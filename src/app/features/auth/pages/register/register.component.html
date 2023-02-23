@@ -1,0 +1,56 @@
+<mat-card-title class="text-center m-b-24">Register</mat-card-title>
+<mat-card-content>
+    <form class="form-horizontal" [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="email" required>
+            <mat-error *ngIf="form.controls['email'].hasError('required')">
+                Email is required!
+            </mat-error>
+            <mat-error *ngIf="form.controls['email'].hasError('email')">
+                Email address is invalid!
+            </mat-error>
+            <mat-error *ngIf="form.controls['email'].hasError('exists')">
+                Email already used!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username" formControlName="username" required>
+            <mat-error *ngIf="form.controls['username'].hasError('required')">
+                Username is required!
+            </mat-error>
+            <mat-error *ngIf="form.controls['username'].hasError('exists')">
+                Username already used!
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" type="password" formControlName="password" required>
+            <mat-error *ngIf="form.controls['password'].invalid">
+                Password is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm password</mat-label>
+            <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword" required>
+            <mat-error *ngIf="form.controls['confirmPassword'].hasError('required')">
+                Confirm password is required!
+            </mat-error>
+            <mat-error *ngIf="form.controls['confirmPassword'].hasError('confirm')">
+                Confirm password must be the same with password!
+            </mat-error>
+        </mat-form-field>
+
+        <div mat-dialog-actions class="mt-2">
+            <button mat-raised-button color="primary" class="w-100" [disabled]="form.invalid"
+                (click)="save()">Save</button>
+        </div>
+
+        <div class="separator mt-2">Or</div>
+
+        <div class="m-t-16">Already have an account? <a class="accent" routerLink="/auth/login">Login now</a></div>
+    </form>
+</mat-card-content>

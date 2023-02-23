@@ -1,0 +1,16 @@
+// Import functions, variables, and mixins needed by other Bootstrap files
+@import "/node_modules/bootstrap/scss/functions";
+@import "/node_modules/bootstrap/scss/variables";
+@import "/node_modules/bootstrap/scss/mixins";
+
+// Import Bootstrap Reboot
+@import "/node_modules/bootstrap/scss/maps"; // Contains :root CSS variables used by other Bootstrap files
+@import "/node_modules/bootstrap/scss/root"; // Contains :root CSS variables used by other Bootstrap files
+@import "/node_modules/bootstrap/scss/reboot";
+
+@import "/node_modules/bootstrap/scss/containers"; // Add .container and .container-fluid classes
+@import "/node_modules/bootstrap/scss/grid"; // Add the grid system
+@import "/node_modules/bootstrap/scss/helpers";
+
+// Import utilities
+@import "/node_modules/bootstrap/scss/bootstrap-utilities";

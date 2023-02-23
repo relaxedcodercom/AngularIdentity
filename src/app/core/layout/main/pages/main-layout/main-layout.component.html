@@ -1,0 +1,15 @@
+<div class="container-wrap">
+    <app-progress-bar class="progress-bar-top-fixed" mode="indeterminate"></app-progress-bar>
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #sidenav [mode]="over" [opened]="opened" class="sidenav">
+            <app-sidenav></app-sidenav>
+        </mat-sidenav>
+
+        <mat-sidenav-content #content role="main">
+            <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
+            <div class="po-container">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

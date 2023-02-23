@@ -1,0 +1,27 @@
+<mat-card-title class="text-center m-b-24">Login</mat-card-title>
+<mat-card-content>
+    <form class="form-horizontal" [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Username or Email
+            </mat-label>
+            <input matInput placeholder="Username or Email" formControlName="username" required>
+            <mat-error *ngIf="form.controls['username'].invalid">
+                Username or Email is required!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" type="password" formControlName="password" required>
+            <mat-error *ngIf="form.controls['password'].invalid">
+                Password is required!</mat-error>
+        </mat-form-field>
+
+        <button class="w-100 mt-2" mat-raised-button color="primary" (click)="login()"
+            [disabled]="form.invalid">Login</button>
+
+        <div class="separator mt-2">Or</div>
+
+        <div class="m-t-16">Don't have an account? <a class="accent" routerLink="/auth/register">Create new account
+                now</a></div>
+    </form>
+</mat-card-content>

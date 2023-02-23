@@ -1,0 +1,26 @@
+<mat-toolbar>
+    <mat-toolbar-row class="d-flex justify-content-between">
+        <button *ngIf="showSidenavToggle === true" mat-icon-button (click)="toggleSidenav.emit()"
+            matTooltip="Show/Hide Menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <a *ngIf="showSidenavToggle === false" class="logo" href="/">
+            <img src="./assets/images/logo.png" alt="Angular Identity" />
+            <span class="logo-name">Angular Identity</span>
+        </a>
+        <span fxFlex></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" overlapTrigger="false">
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+            <button mat-menu-item (click)="logoutEverywhere()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Logout everywhere</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>

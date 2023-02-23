@@ -1,0 +1,66 @@
+@import './styles/bootstrap.scss';
+@import './styles/forms.scss';
+@import './styles/errors.scss';
+@import './styles/separator.scss';
+@import './styles/theme.scss';
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: url("/assets/images/auth-bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    &.dark-theme {
+        background: url("/assets/images/auth-bg-dark.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+}
+
+.progress-bar-top-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.container-wrap {
+    height: 100%;
+}
+
+.sidenav-container {
+    height: 100%;
+}
+
+.sidenav {
+    min-width: 220px;
+}
+
+.logo {
+    color: inherit;
+    white-space: nowrap;
+    font-size: 16px;
+
+    img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .logo-name {
+        font-weight: 400;
+        vertical-align: middle;
+    }
+}

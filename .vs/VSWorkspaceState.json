@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\core",
+    "\\src\\app\\core\\layout",
+    "\\src\\app\\core\\layout\\auth",
+    "\\src\\app\\core\\layout\\auth\\pages",
+    "\\src\\app\\core\\layout\\auth\\pages\\auth-layout"
+  ],
+  "SelectedNode": "\\src\\styles.scss",
+  "PreviewInSolutionExplorer": false
+}

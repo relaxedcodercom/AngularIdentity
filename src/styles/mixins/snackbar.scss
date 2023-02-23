@@ -1,0 +1,36 @@
+@import '/node_modules/@angular/material/theming';
+
+@mixin snackbar-mixin($theme) {
+    $primary: mat-color(map-get($theme, primary), 200);
+    $primary-text: mat-color(map-get($theme, primary), 200-contrast);
+    $warn: mat-color(map-get($theme, warn), 200);
+    $warn-text: mat-color(map-get($theme, warn), 200-contrast);
+
+    .snackbar-success {
+        .mdc-button__label {
+            color: $primary-text !important;
+        }
+
+        .mdc-snackbar__surface {
+            background-color: $primary !important;
+        }
+
+        .mdc-snackbar__label {
+            color: $primary-text !important;
+        }
+    }
+
+    .snackbar-error {
+        .mdc-button__label {
+            color: $warn-text !important;
+        }
+
+        .mdc-snackbar__surface {
+            background-color: $warn !important;
+        }
+
+        .mdc-snackbar__label {
+            color: $warn-text !important;
+        }
+    }
+}

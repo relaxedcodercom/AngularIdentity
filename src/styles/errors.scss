@@ -1,0 +1,18 @@
+.error-main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -64px;
+}
+
+.error-main h1 {
+    font-weight: bold;
+    font-size: 100px;
+    text-shadow: 2px 4px 5px #6e6e6e;
+}
+
+.error-main p {
+    font-size: 14px;
+}

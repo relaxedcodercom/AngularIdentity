@@ -1,0 +1,21 @@
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #64748b;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.separator::before {
+    margin-right: 0.25em;
+}
+
+.separator::after {
+    margin-left: 0.25em;
+}
