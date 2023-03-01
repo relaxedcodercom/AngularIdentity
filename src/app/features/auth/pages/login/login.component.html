@@ -16,6 +16,10 @@
                 Password is required!</mat-error>
         </mat-form-field>
 
+        <re-captcha #captchaElem [siteKey]="recaptchaSiteKey" formControlName="recaptcha" [theme]="theme"></re-captcha>
+        <mat-error *ngIf="form.controls['recaptcha'].invalid && form.controls['recaptcha'].touched">
+            Please validate recaptcha!</mat-error>
+
         <button class="w-100 mt-2" mat-raised-button color="primary" (click)="login()"
             [disabled]="form.invalid">Login</button>
 

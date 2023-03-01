@@ -44,6 +44,10 @@
             </mat-error>
         </mat-form-field>
 
+        <re-captcha #captchaElem [siteKey]="recaptchaSiteKey" formControlName="recaptcha" [theme]="theme"></re-captcha>
+        <mat-error *ngIf="form.controls['recaptcha'].invalid && form.controls['recaptcha'].touched">
+            Please validate recaptcha!</mat-error>
+
         <div mat-dialog-actions class="mt-2">
             <button mat-raised-button color="primary" class="w-100" [disabled]="form.invalid"
                 (click)="save()">Save</button>

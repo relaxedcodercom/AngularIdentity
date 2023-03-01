@@ -1,9 +1,11 @@
 import { RegisterUser } from '@core/models';
 import { AuthenticationService } from '@core/services';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService } from '@shared/alert';
+import { environment } from '@environments/environment';
+import { RecaptchaComponent } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +13,11 @@ import { AlertService } from '@shared/alert';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  form: FormGroup;
+  public form: FormGroup;
+  public recaptchaSiteKey = environment.recaptchaSiteKey;
+  public theme: ReCaptchaV2.Theme = 'light';
+  @ViewChild('captchaElem', { static: false }) captchaElem: RecaptchaComponent;
+
   constructor(private fb: FormBuilder, private authenticationService: AuthenticationService,
     private router: Router, private alertService: AlertService) {
     this.initializeForm();
@@ -28,7 +34,8 @@ export class RegisterComponent {
         [Validators.required, Validators.email]
       ),
       password: ['', [Validators.required]],
-      confirmPassword: ['', [this.confirmValidator]]
+      confirmPassword: ['', [this.confirmValidator]],
+      recaptcha: ['', [Validators.required]]
     });
   }
 
@@ -61,6 +68,10 @@ export class RegisterComponent {
             setTimeout(() => {
               this.router.navigate(['/auth/login']);
             }, 3000);
+          },
+          error: () => {
+            this.captchaElem.reset();
+            this.form.controls['recaptcha'].markAsUntouched();
           }
         }
       );
