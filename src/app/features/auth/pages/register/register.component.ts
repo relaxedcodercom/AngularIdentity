@@ -5,7 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AlertService } from '@shared/alert';
 import { environment } from '@environments/environment';
-import { RecaptchaComponent } from 'ng-recaptcha';
+import { RecaptchaComponent, ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-register',
@@ -16,14 +16,31 @@ export class RegisterComponent {
   public form: FormGroup;
   public recaptchaSiteKey = environment.recaptchaSiteKey;
   public theme: ReCaptchaV2.Theme = 'light';
-  @ViewChild('captchaElem', { static: false }) captchaElem: RecaptchaComponent;
+  //used for reCAPTCHA V2
+  //@ViewChild('captchaElem', { static: false }) captchaElem: RecaptchaComponent;
 
   constructor(private fb: FormBuilder, private authenticationService: AuthenticationService,
-    private router: Router, private alertService: AlertService) {
+    private router: Router, private alertService: AlertService,
+    private recaptchaV3Service: ReCaptchaV3Service,) {
     this.initializeForm();
   }
 
   initializeForm() {
+    this.form = this.fb.group({
+      username: this.fb.control(
+        '',
+        [Validators.required]
+      ),
+      email: this.fb.control(
+        '',
+        [Validators.required, Validators.email]
+      ),
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [this.confirmValidator]],
+    });
+  }
+
+  initializeFormRecaptchaV2() {
     this.form = this.fb.group({
       username: this.fb.control(
         '',
@@ -53,6 +70,35 @@ export class RegisterComponent {
       return;
     }
 
+    this.recaptchaV3Service.execute('register')
+      .subscribe((token) => {
+        var registerUser = new RegisterUser();
+        registerUser = {
+          ...registerUser,
+          ...this.form.value,
+        };
+        registerUser.recaptcha = token;
+
+        this.authenticationService
+          .register(registerUser)
+          .subscribe(
+            {
+              complete: () => {
+                this.alertService.success('User created successfully. Redirecting to login...');
+                setTimeout(() => {
+                  this.router.navigate(['/auth/login']);
+                }, 3000);
+              }
+            }
+          );
+      });
+  }
+
+  saveRecaptchaV2() {
+    if (this.form.invalid) {
+      return;
+    }
+
     var registerUser = new RegisterUser();
     registerUser = {
       ...registerUser,
@@ -70,7 +116,8 @@ export class RegisterComponent {
             }, 3000);
           },
           error: () => {
-            this.captchaElem.reset();
+            //used for reCAPTCHA V2
+            //this.captchaElem.reset();
             this.form.controls['recaptcha'].markAsUntouched();
           }
         }
